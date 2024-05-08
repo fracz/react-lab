@@ -1,15 +1,14 @@
 import "milligram";
 import './App.css';
 import {useState} from "react";
+import LoginForm from "./LoginForm";
 
 function App() {
-    const [email, setEmail] = useState('');
     const [loggedIn, setLoggedIn] = useState(null);
 
-    function login() {
+    function login(email) {
         if (email) {
             setLoggedIn(email);
-            setEmail('');
         }
     }
 
@@ -24,11 +23,7 @@ function App() {
             <button onClick={logout}>Wyloguj</button>
         </div>
     } else {
-        content = <div>
-            <label>Zaloguj się e-mailem</label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <button type="button" onClick={login}>Wchodzę</button>
-        </div>;
+        content = <LoginForm onLogin={login}/>;
     }
 
     return (
