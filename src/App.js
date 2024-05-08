@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [email, setEmail] = useState('');
+    const [loggedIn, setLoggedIn] = useState(null);
+
+    function login() {
+        if (email) {
+            setLoggedIn(email);
+            setEmail('');
+        }
+    }
+
+    function logout() {
+        setLoggedIn(false);
+    }
+
+    let content;
+    if (loggedIn) {
+        content = <div>
+            <h2>Witaj {loggedIn}!</h2>
+            <button onClick={logout}>Wyloguj</button>
+        </div>
+    } else {
+        content = <div>
+            <label>Zaloguj się e-mailem</label>
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <button type="button" onClick={login}>Wchodzę</button>
+        </div>;
+    }
+
+    return (
+        <div>
+            <h1>System do zapisów na zajęcia</h1>
+            {content}
+        </div>
+    );
 }
 
 export default App;
