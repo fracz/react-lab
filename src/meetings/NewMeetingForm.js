@@ -6,7 +6,7 @@ export default function NewMeetingForm({onSubmit}) {
 
     function submit(event) {
         event.preventDefault();
-        onSubmit({title, description});
+        onSubmit({title, description, participants: []});
     }
 
     return (
