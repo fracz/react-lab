@@ -27,6 +27,7 @@ function App() {
       <h1>My favorite movie {title}</h1>
       {title.length > 0 && <div>{message}</div>}
       <input type="text" value={title} onChange={handleChange}/>
+      <button type='button' onClick={() => alert(title)}> Pokaż tutuł filmu </button>
     </div>
 
   );
