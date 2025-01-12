@@ -5,17 +5,20 @@ import "milligram";
 
 
 function App() {
-  const [title, setTitle] = useState('Walle-E');
-
-  const movies = [
-    {title: "Wall-E"},
-    {title: "Pulp Fiction"},
-    {title: "Matrix"},
-    {title: "1670"},
-];
+  const [title, setTitle] = useState('');
+  const [year, setYear] = useState('');
+  const [movies, setMovies] = useState([]);
 
   function handleChange(event){
     setTitle(event.target.value)
+  }
+  function addMovie(event){
+    if (title.length < 5){
+      alert("Tytuł za krótki")
+      return
+    }
+    console.log(title)
+    setMovies([...movies, {title: title, year: year}])
   }
 
   let message;
@@ -31,13 +34,16 @@ function App() {
   
   return (
     <div>
-      <h1>My favorite movie {title}</h1>
+      <h1>Moje ulubione filmy</h1>
       <ul>
         {movies.map((movie) => <li key={movie.title}>{movie.title}</li>)}
       </ul>
+      <h5><b>Tytuł</b></h5>
+      <input type="text" value={title} onChange={(event)=> setTitle(event.target.value)}/>
       {title.length > 0 && <div>{message}</div>}
-      <input type="text" value={title} onChange={handleChange}/>
-      <button type='button' onClick={() => alert(title)}> Pokaż tutuł filmu </button>
+      <h5><b>Rok nagrania</b></h5>
+      <input type="text" value={year} onChange={(event)=> setYear(event.target.value)}/>
+      <button type='button' onClick={addMovie}> DODAJ FILM</button>
     </div>
 
   );
