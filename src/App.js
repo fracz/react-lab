@@ -19,7 +19,7 @@ function App() {
     function handleChange(event) {
         setEmail(event.target.value);
     }
-
+//l
     return (
         <div>
             <h1>Witaj w systemie do zapisów na zajęcia</h1>
