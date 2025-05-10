@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
+import "milligram";
+
 function App() {
     const [email, setEmail] = useState('szulinska@agh.edu.pl');
     const [authenticatedUsername, setAuthenticatedUsername] = useState(null);
