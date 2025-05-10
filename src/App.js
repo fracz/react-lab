@@ -14,16 +14,49 @@ function App() {
         message = <div>Twój adres e-mail jest stanowczo za długi.</div>;
     }
 
+    function showAlert(){
+        alert(email);
+    }
+
+    function logIn() {
+        let idLogIn = document.getElementById("divLogIn");
+        let idLogOut = document.getElementById("divLogOut");
+
+        let logowanie = document.getElementById("logowanie").value;
+
+        if(logowanie === null || logowanie === ""){
+            alert("Aby się zalogować musisz podać twój e-mail!")
+        }else{
+            idLogIn.style.display = "none";
+            idLogOut.style.display = "block";
+        }
+
+    }
+    function logOut(){
+        let idLogIn = document.getElementById("divLogIn");
+        let idLogOut = document.getElementById("divLogOut");
+        let logowanie = document.getElementById("logowanie");
+
+        idLogIn.style.display = "block";
+        idLogOut.style.display = "none";
+        logowanie.value = "";
+    }
     function handleChange(event) {
         setEmail(event.target.value);
     }
 
     return (
         <div>
-            <h1>System do zapisów na zajęcia</h1>
-            <h2>Twój e-mail to {email}</h2>
-            {message}
-            <input type="text" value={email} onChange={handleChange}/>
+            <h1>Witaj w systemie do zapisów na zajęcia</h1>
+            <div id={"divLogIn"}>
+                <label htmlFor={"logowanie"}>Zaloguj się e-mailem  </label>
+                <input id={"logowanie"} type="text" onChange={handleChange}/>
+                <button type="button" onClick={logIn}>Wchodzę</button>
+            </div>
+            <div id={"divLogOut"} style={{display: "none"}}>
+                <h2>Witaj {email}!</h2>
+                <p onClick={logOut} style={{color: "blue"}}>Wyloguj</p>
+            </div>
         </div>
     );
 }
