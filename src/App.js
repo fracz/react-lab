@@ -2,23 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
 import "milligram";
+import LoginForm from "./LoginForm";
 
 function App() {
-    const [email, setEmail] = useState('szulinska@agh.edu.pl');
     const [authenticatedUsername, setAuthenticatedUsername] = useState(null);
 
-    function handleChange(event) {
-        setEmail(event.target.value);
+    function login(email){
+        if(email){
+            setAuthenticatedUsername(email);
+        }
     }
+
     return (
         <div>
             <h1>Witaj w systemie do zapisów na zajęcia</h1>
             {!authenticatedUsername && (
-                <div id={"divLogIn"}>
-                    <label htmlFor={"logowanie"}>Zaloguj się e-mailem  </label>
-                    <input type="text" onChange={handleChange}/>
-                    <button type="button" onClick={() => setAuthenticatedUsername(email)}>Wchodzę</button>
-                </div>
+                <LoginForm onLogin={(email) => login(email)}/>
             )}
             {authenticatedUsername && (
                 <div>
